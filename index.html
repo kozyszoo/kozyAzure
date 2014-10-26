@@ -18,12 +18,12 @@ var client = new WindowsAzure.MobileServiceClient(
 );
 
 // データテーブルにアクセスし、読み込みを実行する
-var query = client.getTable("Item").take(1000).read().done(function (results) {
+var query = client.getTable("TodoItem").take(1000).read().done(function (results) {
 
     // 「JSON 文字列」から「JavaScript のオブジェクト」に変換する
     var obj = JSON.parse(JSON.stringify(results));
 
-    // objの要素数だけ繰り返す	
+    // objの要素数だけ繰り返す    
     for (var i = 0; i < obj.length; i++) {
         document.getElementById("result").innerHTML += "<p>" + obj[i].text + "</p>";
     }
@@ -37,14 +37,18 @@ var query = client.getTable("Item").take(1000).read().done(function (results) {
     好きな言葉を入力してください
     <input type="text" id="inputId">
     <button id="btnTest">テスト</button>
-    <script type="text/javascript">
+<script type="text/javascript">
 // ボタンを押した際の挙動
 btnTest.onclick = function(){
     var item = { text: document.getElementById("inputId").value };
-    client.getTable("TItem").insert(item);
-    location.reload();
+    //alert(item);
+    //client.getTable("TodoItem").insert(item);
+    //var item = { text: "すばらしいアイテム" };
+    client.getTable("TodoItem").insert(item);
+    console.log(item);
+    //location.reload();
 }
-    </script>
+</script>
 
 <div id="result"></div>
 
