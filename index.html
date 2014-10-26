@@ -18,7 +18,7 @@ var client = new WindowsAzure.MobileServiceClient(
 );
 
 // データテーブルにアクセスし、読み込みを実行する
-var query = client.getTable("TodoItem").take(1000).read().done(function (results) {
+var query = client.getTable("Item").take(1000).read().done(function (results) {
 
     // 「JSON 文字列」から「JavaScript のオブジェクト」に変換する
     var obj = JSON.parse(JSON.stringify(results));
@@ -44,7 +44,7 @@ btnTest.onclick = function(){
     //alert(item);
     //client.getTable("TodoItem").insert(item);
     //var item = { text: "すばらしいアイテム" };
-    client.getTable("TodoItem").insert(item);
+    client.getTable("Item").insert(item);
     console.log(item);
     //location.reload();
 }
